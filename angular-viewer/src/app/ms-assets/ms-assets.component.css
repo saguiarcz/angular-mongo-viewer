@@ -1,0 +1,34 @@
+.msAsset-div-principal{
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+.msAsset-div-secondary{
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+  /*padding: 10px;*/
+}
+.msAsset-div-noBackGround{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 1px;
+  margin-right: 1px;
+  /*padding: 10px;*/
+}
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 100%;
+}
+h3 {
+  /*color: #004a99;*/
+  color: black;
+}
+

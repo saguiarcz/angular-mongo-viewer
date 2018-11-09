@@ -1,0 +1,12 @@
+<h2>
+  Mongo collections:
+</h2>
+
+<div *ngIf="collections">
+  <ul *ngFor="let collection of collections" class="navbar">
+    <li [ngClass]="{'active': selectedCollection && collection === selectedCollection, 'nav-item': true}" style="cursor: pointer;" (click)="selectCollection(collection)">
+      <span>{{collection | titlecase}}</span>
+    </li>
+  </ul>
+</div>
+

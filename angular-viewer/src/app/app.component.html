@@ -1,0 +1,32 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid divMain">
+  <nav class="navbar navbar-expand-lg navbar-light justify-content-between" style="background: white; border-width: 5px; border-color: black" >
+    <a class="navbar-brand" routerLink="/dashboard">AWS-timeseries</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+  <div class="row" >
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2" >
+      <nav class="navbar navbar-expand navbar-light navbar-expand-lg px-0 flex-row flex-nowrap" style="background: white">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarWEX" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarWEX">
+          <div class="nav flex-sm-column flex-row">
+            <a class="nav-item nav-link" style="color: black" routerLink="/assets">Home</a>
+            <a class="nav-link" style="color: black" routerLink="/assets">Assets</a>
+            <a class="nav-link" style="color: black" routerLink="/bejobs">Back-End Jobs</a>
+            <a class="nav-link" style="color: black" routerLink="/mongodashboard">Mongo Viewer</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

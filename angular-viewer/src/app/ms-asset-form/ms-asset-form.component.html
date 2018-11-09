@@ -1,0 +1,218 @@
+<div class="container msAssetForm-div">
+  <h4>Asset Management API</h4>
+  <form (ngSubmit)="onSubmit()" #msAssetForm="ngForm" class="msAssetForm-form">
+    <div class="form-group row">
+      <div class="col">
+        <label for="urlRequest">Url</label>
+        <input type="text" class="form-control" id="urlRequest"
+               required
+               [(ngModel)]="inputUrl" name="url"
+               #spy
+               placeholder="Enter endpoint eg.: '/assets'">
+        <br>TODO: remove this: {{spy.className}}
+      </div>
+      <div class="col">
+        <label for="method">Method</label>
+        <select class="form-control" id="method"
+                required
+                [(ngModel)]="model.method" name="method">
+          <option *ngFor="let method of methods" [value]="method">{{method}}</option>
+        </select>
+      </div>
+      <div class="col" [ngSwitch]="model.method">
+            <button *ngSwitchDefault type="submit" class="btn btn-success"
+                    [disabled]="!msAssetForm.form.valid"
+                    (click)="getUrlCallAssetManagement(inputUrl)">
+              Get
+            </button>
+            <button *ngSwitchCase="'post'" type="submit" class="btn btn-secondary"
+                    [disabled]="!msAssetForm.form.valid"
+                    (click)="postMsAsset(model.body)">
+              Add
+            </button>
+            <button *ngSwitchCase="'put'" type="submit" class="btn btn-info"
+                    [disabled]="!msAssetForm.form.valid"
+                    (click)="putMsAsset(model.body, inputUrl)">
+              Update
+            </button>
+            <button *ngSwitchCase="'delete'" type="submit" class="btn btn-danger"
+                    [disabled]="!msAssetForm.form.valid"
+                    (click)="deleteMsAsset(inputUrl)">
+              Delete
+            </button>
+      </div>
+    </div>
+    <div *ngIf="model.method !== 'get'" class="form-group row">
+      <div class="col">
+        <label for="body">Body</label>
+        <textarea class="form-control text-hide" id="body"
+                  required
+                  [(ngModel)]="model.body" name="body">
+        </textarea>
+        <ace-editor [(text)]="model.body" mode="json" style="height:400px;"></ace-editor>
+      </div>
+      <div class="col">
+        <h6>Response</h6>
+        <br>
+        <ace-editor [(text)]="stringMsAsset" mode="json" style="height:400px;"></ace-editor>
+      </div>
+    </div>
+    <div *ngIf="model.method === 'get'" class="form-group row">
+      <div class="col">
+        <h6>Response</h6>
+        <br>
+        <ace-editor [(text)]="msAssetResponse" mode="json" style="height:400px;"></ace-editor>
+      </div>
+    </div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Aspecttype
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <div class="form-group row">
+              <div class="col">
+                <label for="urlRequestAspecttype">Url</label>
+                <input type="text" class="form-control" id="urlRequestAspecttype"
+                       required
+                       [(ngModel)]="inputUrl" name="url"
+                       #spy
+                       placeholder="Enter endpoint eg.: '/assets'">
+                <br>TODO: remove this: {{spy.className}}
+              </div>
+              <div class="col">
+                <label for="method">Method</label>
+                <select class="form-control" id="method"
+                        required
+                        [(ngModel)]="model.method" name="method">
+                  <option *ngFor="let method of methods" [value]="method">{{method}}</option>
+                </select>
+              </div>
+              <div class="col" [ngSwitch]="model.method">
+                <button *ngSwitchDefault type="submit" class="btn btn-success"
+                        [disabled]="!msAssetForm.form.valid"
+                        (click)="getUrlCallAssetManagement(inputUrl)">
+                  Get
+                </button>
+                <button *ngSwitchCase="'post'" type="submit" class="btn btn-secondary"
+                        [disabled]="!msAssetForm.form.valid"
+                        (click)="postMsAsset(model.body)">
+                  Add
+                </button>
+                <button *ngSwitchCase="'put'" type="submit" class="btn btn-info"
+                        [disabled]="!msAssetForm.form.valid"
+                        (click)="putMsAsset(model.body, inputUrl)">
+                  Update
+                </button>
+                <button *ngSwitchCase="'delete'" type="submit" class="btn btn-danger"
+                        [disabled]="!msAssetForm.form.valid"
+                        (click)="deleteMsAsset(inputUrl)">
+                  Delete
+                </button>
+              </div>
+            </div>
+            <div *ngIf="model.method !== 'get'" class="form-group row">
+              <div class="col">
+                <label for="body">Body</label>
+                <textarea class="form-control text-hide" id="bodyAspectType"
+                          required
+                          [(ngModel)]="model.body" name="body">
+        </textarea>
+                <ace-editor [(text)]="model.body" mode="json" style="height:400px;"></ace-editor>
+              </div>
+              <div class="col">
+                <h6>Response</h6>
+                <br>
+                <ace-editor [(text)]="stringMsAsset" mode="json" style="height:400px;"></ace-editor>
+              </div>
+            </div>
+            <div *ngIf="model.method === 'get'" class="form-group row">
+              <div class="col">
+                <h6>Response</h6>
+                <br>
+                <ace-editor [(text)]="msAssetResponse" mode="json" style="height:400px;"></ace-editor>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Assettype
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Assets
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Structure
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Locations
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Files
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,15 @@
+<div class="container-fluid" style="text-align:center">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="mongo-dashboard-div-principal">
+        <app-mongo (collectionChanged)="collectionViewer.setDifferentCollection($event)"></app-mongo>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <div class="mongo-dashboard-div-secondary">
+        <h3>Angular Mongo viewer!</h3>
+        <app-collection-viewer #collectionViewer></app-collection-viewer>
+      </div>
+    </div>
+  </div>
+</div>

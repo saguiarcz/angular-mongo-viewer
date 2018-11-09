@@ -1,0 +1,23 @@
+<form>
+<div class="form-group" style="text-align: left">
+  <label for="expression">Expression:</label>
+  <input id="expression" type="text" class="form-control" name="expression" [(ngModel)]="expression">
+  <div class="card-body">
+    <button class="btn btn-primary" (click)="setDifferentExpression()">Read data</button>
+    <button class="btn btn-primary" (click)="selectAll()">Select All</button>
+    <button class="btn btn-primary" (click)="deselectAll()">Deselect all</button>
+    <button class="btn btn-primary" (click)="deleteSelected()">Delete selected</button>
+  </div>
+</div>
+<div *ngIf="collectionsDataArray">
+  <div class="row" *ngFor="let collection of collectionsDataArray; let i = index; trackBy: i">
+    <div class="card col-10">
+      <div class="card-body">
+        {{ collection.content }}
+      </div>
+    </div>
+    <input type="checkbox" [name]="'check' + i" [(ngModel)]="collection.checked" class="col-2">
+  </div>
+  <ngb-pagination [maxSize]="12" boundaryLinks="true" ellipses="true" (pageChange)="pageChange($event)" [pageSize]="7" [collectionSize]="collectionSize" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+</div>
+</form>

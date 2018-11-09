@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <!--
+  <div class="row">
+    <h6>Response</h6>
+    <br>
+    <ace-editor (click)="stringifyRawMsAsset()"  [(text)]="stringMsAsset" mode="json" style="height:400px;"></ace-editor>
+    <!--<textarea [(ngModel)]="stringMsAsset"></textarea>
+  </div>
+    -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="msAsset-div-principal">
+        <h3>My Assets</h3>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Id</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let msAsset of msAssetsByPage | paginate: { itemsPerPage: 10, currentPage: p, totalItems: msAssetsTotal-1 };let i = index"
+              (click)="onSelect(msAsset)">
+            <td>{{i+1}}</td>
+            <td>{{msAsset.name}}</td>
+            <td>{{msAsset.assetId}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event" (click)="getMsAssetsByPage()"></pagination-controls>
+      </div>
+
+    </div>
+    <div class="col-lg-6">
+      <div class="container-fluid msAsset-div-noBackGround">
+        <app-ms-asset-detail [msAsset]="selectedMsAsset"></app-ms-asset-detail>
+      </div>
+    </div>
+    <div class="col">
+      <app-ms-asset-form></app-ms-asset-form>
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

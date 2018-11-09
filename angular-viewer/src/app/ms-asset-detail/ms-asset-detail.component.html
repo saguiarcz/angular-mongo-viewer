@@ -1,0 +1,18 @@
+<div *ngIf="msAsset" class="container msAsset-detail-div">
+  <div class="row">
+    <div class="col">
+        <h4>Details</h4>
+        <ngx-json-viewer [json]="msAsset" [expanded]="false"></ngx-json-viewer>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="msAsset" class="container msAsset-detail-div">
+  <h4>Editor</h4>
+  <div class="row">
+    <div class="container">
+      <ace-editor [(text)]="code" mode="json" style="height:400px;"></ace-editor>
+    </div>
+  </div>
+</div>
